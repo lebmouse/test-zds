@@ -2,10 +2,6 @@
   "version": 2,
   "projects": {
     "tds": "packages/tds",
-    "web": "packages/web",
-    "web-e2e": "packages/web-e2e",
-    "zds-container": "packages/zds/container",
-    "zds-core": "packages/zds/core",
-    "zds-element": "packages/zds/element"
+    "web": "packages/web"
   }
 }

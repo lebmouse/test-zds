@@ -1,4 +1,3 @@
-import { ZdsElement } from '@croquiscom-pvt/zds/element';
 import styled from '@emotion/styled';
 import NxWelcome from './nx-welcome';
 
@@ -10,7 +9,6 @@ export function App() {
   return (
     <StyledApp>
       <NxWelcome title="web" />
-      <ZdsElement/>
     </StyledApp>
   );
 }
