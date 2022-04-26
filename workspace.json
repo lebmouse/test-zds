@@ -1,4 +1,8 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "zds-container": "packages/zds/container",
+    "zds-core": "packages/zds/core",
+    "zds-element": "packages/zds/element"
+  }
 }
