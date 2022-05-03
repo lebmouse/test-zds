@@ -1,4 +1,4 @@
-import { Zds,ZdsCore } from '@croquiscom/zds';
+import { Zds,ZdsCore,ZdsContainer,ZdsElement } from '@croquiscom/zds';
 import styled from '@emotion/styled';
 import NxWelcome from './nx-welcome';
 
@@ -11,6 +11,8 @@ export function App() {
     <StyledApp>
       <Zds />
       <ZdsCore />
+      <ZdsElement/>
+      <ZdsContainer/>
       <NxWelcome title="web" />
     </StyledApp>
   );

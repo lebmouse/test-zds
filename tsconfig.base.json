@@ -19,7 +19,9 @@
       "@croquiscom/zds/core": ["packages/zds/core/src/index.ts"],
       "@zds/tds": ["packages/tds/src/index.ts"],
       "@zds/tds/core": ["packages/tds/core/src/index.ts"],
-      "@zds/zds-core": ["packages/zds-core/src/index.ts"]
+      "@zds/zds-container": ["packages/zds-container/src/index.ts"],
+      "@zds/zds-core": ["packages/zds-core/src/index.ts"],
+      "@zds/zds-element": ["packages/zds-element/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

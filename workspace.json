@@ -4,6 +4,8 @@
     "tds": "packages/tds",
     "web": "packages/web",
     "zds": "packages/zds",
-    "zds-core": "packages/zds-core"
+    "zds-container": "packages/zds-container",
+    "zds-core": "packages/zds-core",
+    "zds-element": "packages/zds-element"
   }
 }
