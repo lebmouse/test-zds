@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@croquiscom-pvt/zds/container": ["packages/zds/container/src/index.ts"],
-      "@croquiscom-pvt/zds/core": ["packages/zds/core/src/index.ts"],
-      "@croquiscom-pvt/zds/element": ["packages/zds/element/src/index.ts"],
+      "@croquiscom/zds": ["packages/zds/src/index.ts"],
+      "@croquiscom/zds/core": ["packages/zds/core/src/index.ts"],
       "@zds/tds": ["packages/tds/src/index.ts"],
-      "@zds/tds/core": ["packages/tds/core/src/index.ts"]
+      "@zds/tds/core": ["packages/tds/core/src/index.ts"],
+      "@zds/zds-core": ["packages/zds-core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

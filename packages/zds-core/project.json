@@ -1,0 +1,23 @@
+{
+  "root": "packages/zds-core",
+  "sourceRoot": "packages/zds-core/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/zds-core/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/zds-core"],
+      "options": {
+        "jestConfig": "packages/zds-core/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
