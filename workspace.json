@@ -1,7 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "tds": "packages/tds",
     "web": "packages/web",
     "zds": "packages/zds",
     "zds-container": "packages/zds-container",

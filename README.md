@@ -2,93 +2,51 @@
 
 # Zds
 
-This project was generated using [Nx](https://nx.dev).
+지그재그 디자인 시스템
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## 구조
+다음과 같은 구조를 가집니다.
+* zds: 다른 zds 패키지를 한 곳에서 내보내는 역활, 실제로 다른 곳에서 사용되는 패키지, 전체적인 문서는 여기서 작업
+* zds-core: style-token(text, color, theme)
+* zds-element: [100_element](https://www.figma.com/file/qdogFNN3Z0DCXFtejgtHDH/ZDS-2.0.0?node-id=344%3A12261)를 구현
+* zds-container: [200_container](https://www.figma.com/file/qdogFNN3Z0DCXFtejgtHDH/ZDS-2.0.0?node-id=344%3A12256)를 구현
 
-🔎 **Smart, Fast and Extensible Build System**
+## 해당 구조를 잡은 이유
+### 해당 수정한 부분만 빌드하기 위해서(빌드속도 최적화)
+해당 수정한 패키지만 수정를 하기 위해서, 수정한 패키지만 테스트 후 빌드하면 됨
+예를 들어, `zds-container`만 수정하면 해당 패키지만 빌드하기 위함
 
-## Adding capabilities to your workspace
+### 영향도를 파악하기 위해서
+패키지가 나눠져 있어야 패키지끼리 영향을 미치는지 파악하기 쉽다.
+core가 변경하면 `zds-core` -> `zds-element` -> `zds-container`로 영향을 주니, 모든 패키지가 테스트하고 빌드되어야 한다.
+예를 들어 `core`에서 `color` 값을 변경한다면 `element`의 `Button`도 변경이 되고 `container`의 `ButtonNavigation`도 변경되어야 하니깐 모두 빌드 된다.
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+> 다만, 모든 컴포넌트를 각 패키지로 만들어도 좋을 수도 있지만, 그 정도로 의존성 파악이 필요한지 모르겠고, 만약 너무 커진다면 나누는것은 좋은 생각일 것 같다. 
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+![그래프](docs/assets/graph.png)
 
-Below are our core plugins:
+## 테스트해보기
+* [web/src/app.tsx](packages/web/src/app/app.tsx)에서 테스트를 해볼 수 있다.
+```tsx
+import { Zds, ZdsCore, ZdsContainer, ZdsElement } from '@croquiscom/zds';
+import styled from '@emotion/styled';
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+const StyledApp = styled.div``;
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+export function App() {
+  return (
+    <StyledApp>
+      <Zds />
+      <ZdsCore />
+      <ZdsElement />
+      <ZdsContainer />
+    </StyledApp>
+  );
+}
 
-## Generate an application
+export default App;
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+```
 
-> You can use any of the plugins above to generate applications as well.
+* zds 패키지는 `ZdsCore`, `ZdsContainer`, `ZdsElement`를 가져다 사용할 수 있다.
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@zds/mylib`.
-
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.

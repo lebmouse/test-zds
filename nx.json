@@ -2,7 +2,7 @@
   "extends": "nx/presets/core.json",
   "npmScope": "zds",
   "affected": {
-    "defaultBase": "main"
+    "defaultBase": "master"
   },
   "cli": {
     "defaultCollection": "@nrwl/react"
